@@ -1,0 +1,5 @@
+{
+  "name": "AcademiCal AI",
+  "description": "Smart academic calendar assistant with entity recognition for dates, courses, and semesters.",
+  "requestFramePermissions": []
+}
