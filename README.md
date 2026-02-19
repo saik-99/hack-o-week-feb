@@ -33,6 +33,22 @@ AcademiCal AI is an intelligent React application that transforms static academi
 3.  **AI Processing**: The Gemini model analyzes the visual layout of the calendar and the semantic meaning of the question simultaneously.
 4.  **Response Parsing**: The application receives a JSON object containing both the natural language `answer` and a structured `entities` object, which are rendered dynamically in the chat interface.
 
+### 🔄 Workflow Diagram
+
+```mermaid
+graph TD
+    User[User] -->|1. Uploads Image| Client[React Client]
+    Client -->|2. Convert to Base64| State[(In-Memory State)]
+    User -->|3. Asks Question| Client
+    Client -->|4. Construct Request| Service[Gemini Service]
+    State -.->|Attach Image| Service
+    Service -->|5. API Call with Image and Text| Gemini[Google Gemini API]
+    Gemini -->|6. Multimodal Analysis| Gemini
+    Gemini -->|7. Return Structured JSON| Service
+    Service -->|8. Extract Answer & Entities| Client
+    Client -->|9. Render Chat & Chips| User
+```
+
 ## 📦 Getting Started
 
 ### Prerequisites
@@ -72,18 +88,3 @@ You need a Google Gemini API Key. Get one at [Google AI Studio](https://aistudio
 ---
 
 *Built for the Google Gemini Developer Competition.*
-### 🔄 Workflow Diagram
-
-```mermaid
-graph TD
-    User[User] -->|1. Uploads Image| Client[React Client]
-    Client -->|2. Convert to Base64| State[(In-Memory State)]
-    User -->|3. Asks Question| Client
-    Client -->|4. Construct Request| Service[Gemini Service]
-    State -.->|Attach Image| Service
-    Service -->|5. API Call (Image + Text)| Gemini[Google Gemini API]
-    Gemini -->|6. Multimodal Analysis| Gemini
-    Gemini -->|7. Return Structured JSON| Service
-    Service -->|8. Extract Answer & Entities| Client
-    Client -->|9. Render Chat & Chips| User
-```
